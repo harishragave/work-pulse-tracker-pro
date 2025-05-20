@@ -5,6 +5,7 @@ import { useTaskContext } from '../contexts/TaskContext';
 import Navbar from '../components/Navbar';
 import TimerControls from '../components/TimerControls';
 import TimerDisplay from '../components/TimerDisplay';
+import ScreenshotDisplay from '../components/ScreenshotDisplay';
 
 interface TimerPageProps {
   onSettingsClick: () => void;
@@ -57,7 +58,11 @@ const TimerPage: React.FC<TimerPageProps> = ({ onSettingsClick, onQuitClick }) =
           <TimerControls />
         </div>
         
-        <div className="mt-6 text-xs text-muted-foreground">
+        <div className="mb-6">
+          <ScreenshotDisplay />
+        </div>
+        
+        <div className="mt-4 text-xs text-muted-foreground">
           <div className="flex justify-between border-t pt-2">
             <span>Keyboard activity:</span>
             <span>{keyboardCount} keystrokes</span>
