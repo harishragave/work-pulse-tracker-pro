@@ -13,7 +13,11 @@ const Navbar: React.FC<NavbarProps> = ({ title, onSettingsClick, onQuitClick }) 
   const { isDarkMode } = useTheme();
   
   return (
-    <div className={`flex justify-between items-center p-3 ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'} border-b`}>
+    <div className={`flex justify-between items-center p-3 ${
+      isDarkMode 
+        ? 'bg-gray-900 text-white' 
+        : 'bg-amber-50 text-gray-900 border-amber-200'
+    } border-b`}>
       <div className="flex items-center space-x-2">
         <div className="w-8 h-8 rounded-full bg-gray-500 flex items-center justify-center text-white">
           U
@@ -26,7 +30,11 @@ const Navbar: React.FC<NavbarProps> = ({ title, onSettingsClick, onQuitClick }) 
       <div className="flex items-center space-x-3">
         <button 
           onClick={onSettingsClick}
-          className="p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700"
+          className={`p-1 rounded-full ${
+            isDarkMode 
+              ? 'hover:bg-gray-700' 
+              : 'hover:bg-amber-100'
+          }`}
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="12" cy="12" r="3"></circle>
@@ -35,7 +43,11 @@ const Navbar: React.FC<NavbarProps> = ({ title, onSettingsClick, onQuitClick }) 
         </button>
         <button 
           onClick={onQuitClick}
-          className="p-1 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700"
+          className={`p-1 rounded-full ${
+            isDarkMode 
+              ? 'hover:bg-gray-700' 
+              : 'hover:bg-amber-100'
+          }`}
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
             <line x1="18" y1="6" x2="6" y2="18"></line>

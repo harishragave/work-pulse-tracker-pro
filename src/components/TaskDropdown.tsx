@@ -58,9 +58,11 @@ const TaskDropdown: React.FC<TaskDropdownProps> = ({
             value={selectedId || ''}
             onChange={(e) => onSelect(e.target.value ? Number(e.target.value) : null)}
             disabled={disabled}
-            className={`w-full p-2 rounded-md ${isDarkMode 
-              ? 'bg-taskDropdown-bg text-taskDropdown-text' 
-              : 'bg-taskDropdown-bg text-taskDropdown-text'}`}
+            className={`w-full p-2 rounded-md ${
+              isDarkMode 
+                ? 'bg-gray-700 text-white border border-gray-600' 
+                : 'bg-amber-50 text-gray-800 border border-amber-200'
+            }`}
           >
             <option value="">Select {getLevelLabel()}</option>
             {tasks.map((task) => (
