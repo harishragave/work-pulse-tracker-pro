@@ -6,6 +6,8 @@ import Navbar from '../components/Navbar';
 import TimerControls from '../components/TimerControls';
 import TimerDisplay from '../components/TimerDisplay';
 import ScreenshotDisplay from '../components/ScreenshotDisplay';
+import { Button } from '@/components/ui/button';
+import { ChevronLeft } from 'lucide-react';
 
 interface TimerPageProps {
   onSettingsClick: () => void;
@@ -30,6 +32,10 @@ const TimerPage: React.FC<TimerPageProps> = ({ onSettingsClick, onQuitClick }) =
     return null;
   }
 
+  const handleBackToTaskSelection = () => {
+    navigate('/');
+  };
+
   return (
     <div className="h-full flex flex-col">
       <Navbar 
@@ -39,6 +45,16 @@ const TimerPage: React.FC<TimerPageProps> = ({ onSettingsClick, onQuitClick }) =
       />
       
       <div className="flex-grow p-4 overflow-y-auto">
+        <Button 
+          variant="outline" 
+          size="sm" 
+          className="mb-4 flex items-center" 
+          onClick={handleBackToTaskSelection}
+        >
+          <ChevronLeft className="mr-1 h-4 w-4" />
+          Back to tasks
+        </Button>
+        
         <div className="mb-4">
           <h2 className="text-lg font-bold">{selectedTaskDetails.name}</h2>
           <div className="flex items-center mt-1 text-sm">

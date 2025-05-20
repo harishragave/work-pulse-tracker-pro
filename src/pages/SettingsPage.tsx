@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../contexts/ThemeContext';
@@ -7,13 +6,15 @@ import Navbar from '../components/Navbar';
 import { Card } from '@/components/ui/card';
 import { Switch } from '@/components/ui/switch';
 import { Button } from '@/components/ui/button';
+import { ChevronLeft } from 'lucide-react';
 import { format } from 'date-fns';
 
 interface SettingsPageProps {
+  onBackClick: () => void;
   onQuitClick: () => void;
 }
 
-const SettingsPage: React.FC<SettingsPageProps> = ({ onQuitClick }) => {
+const SettingsPage: React.FC<SettingsPageProps> = ({ onBackClick, onQuitClick }) => {
   const navigate = useNavigate();
   const { isDarkMode, toggleTheme } = useTheme();
   const { keyboardCount, mouseCount, lastScreenshotTime } = useTaskContext();
@@ -42,11 +43,21 @@ const SettingsPage: React.FC<SettingsPageProps> = ({ onQuitClick }) => {
     <div className="h-full flex flex-col">
       <Navbar 
         title="Settings"
-        onSettingsClick={() => navigate('/')}
+        onSettingsClick={onBackClick}
         onQuitClick={onQuitClick}
       />
       
       <div className="flex-grow p-4 overflow-y-auto">
+        <Button 
+          variant="outline" 
+          size="sm" 
+          className="mb-4 flex items-center" 
+          onClick={onBackClick}
+        >
+          <ChevronLeft className="mr-1 h-4 w-4" />
+          Back
+        </Button>
+        
         <Card className="p-4 mb-4">
           <h2 className="text-lg font-medium mb-3">Appearance</h2>
           <div className="flex items-center justify-between">

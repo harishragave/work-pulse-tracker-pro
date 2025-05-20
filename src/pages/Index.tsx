@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { ThemeProvider } from '../contexts/ThemeContext';
 import { TaskProvider } from '../contexts/TaskContext';
 import TaskSelectionPage from './TaskSelectionPage';
@@ -10,10 +10,23 @@ import { useToast } from "@/hooks/use-toast";
 
 const Index = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { toast } = useToast();
+  const [previousPath, setPreviousPath] = useState('/');
+  
+  // Track page changes to remember the previous path
+  React.useEffect(() => {
+    if (location.pathname !== '/settings') {
+      setPreviousPath(location.pathname);
+    }
+  }, [location.pathname]);
   
   const handleSettingsClick = () => {
     navigate('/settings');
+  };
+  
+  const handleBackFromSettings = () => {
+    navigate(previousPath);
   };
   
   const handleQuitClick = () => {
@@ -46,6 +59,7 @@ const Index = () => {
               <Route 
                 path="/settings" 
                 element={<SettingsPage 
+                  onBackClick={handleBackFromSettings}
                   onQuitClick={handleQuitClick}
                 />} 
               />
