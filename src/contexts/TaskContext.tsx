@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { fetchTasks } from '../utils/api';
 
@@ -307,11 +306,15 @@ export const TaskProvider = ({ children }: { children: React.ReactNode }) => {
       }
     }, 10000); // Every 10 seconds
 
+    // Changed to less frequent interval to simulate clicks rather than movements
     const mouseInterval = setInterval(() => {
       if (timer.isRunning && !timer.isPaused) {
-        incrementMouseCount();
+        // Only increment mouse count randomly to simulate clicks rather than movements
+        if (Math.random() > 0.5) { // 50% chance to increment
+          incrementMouseCount();
+        }
       }
-    }, 5000); // Every 5 seconds
+    }, 15000); // Every 15 seconds (less frequent for clicks vs movements)
 
     return () => {
       clearInterval(keyboardInterval);

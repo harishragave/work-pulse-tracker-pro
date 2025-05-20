@@ -16,9 +16,7 @@ const TimerPage: React.FC<TimerPageProps> = ({ onSettingsClick, onQuitClick }) =
   const navigate = useNavigate();
   const { 
     timer, 
-    selectedTaskDetails, 
-    keyboardCount, 
-    mouseCount 
+    selectedTaskDetails
   } = useTaskContext();
   
   // If there's no active timer, redirect to the task selection page
@@ -58,20 +56,7 @@ const TimerPage: React.FC<TimerPageProps> = ({ onSettingsClick, onQuitClick }) =
           <TimerControls />
         </div>
         
-        <div className="mb-6">
-          <ScreenshotDisplay />
-        </div>
-        
-        <div className="mt-4 text-xs text-muted-foreground">
-          <div className="flex justify-between border-t pt-2">
-            <span>Keyboard activity:</span>
-            <span>{keyboardCount} keystrokes</span>
-          </div>
-          <div className="flex justify-between border-t pt-2 mt-1">
-            <span>Mouse activity:</span>
-            <span>{mouseCount} movements</span>
-          </div>
-        </div>
+        <ScreenshotDisplay />
       </div>
     </div>
   );
